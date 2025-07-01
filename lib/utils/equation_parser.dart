@@ -31,14 +31,20 @@ class EquationParser {
   }
 
   MapEntry<int, Map<String, int>> parseFormulaWithCoeff(String formula) {
-    final RegExp coeffRegExp = RegExp(r'^(\d+)([A-Za-z(])');
+    final RegExp coeffRegExp = RegExp(r'^(\d+)([A-Za-z(])', caseSensitive: false);
     int coeff = 1;
-    String cleanFormula = formula;
-    final match = coeffRegExp.firstMatch(formula);
+    String cleanFormula = formula.trim();
+    final match = coeffRegExp.firstMatch(cleanFormula);
     if (match != null) {
       coeff = int.parse(match.group(1)!);
-      cleanFormula = formula.substring(match.group(1)!.length);
+      cleanFormula = cleanFormula.substring(match.group(1)!.length);
     }
+    // Приводим к правильному регистру (например, oh -> OH)
+    cleanFormula = cleanFormula.replaceAllMapped(RegExp(r'[a-zA-Z]+'), (m) {
+      final s = m.group(0)!;
+      if (s.length == 1) return s.toUpperCase();
+      return s[0].toUpperCase() + s.substring(1).toLowerCase();
+    });
     return MapEntry(coeff, parseFormula(cleanFormula));
   }
 
