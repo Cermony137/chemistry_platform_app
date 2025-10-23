@@ -134,6 +134,12 @@ class _AnalyticalModulePageState extends State<AnalyticalModulePage> {
               ],
             ),
             const SizedBox(height: 20),
+            // Заголовок для шаблонов
+            const Text(
+              'Шаблоны формул:',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
             Expanded(
               child: ListView(
                 children: templates.entries.map((entry) {
