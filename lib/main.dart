@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:chemistry_platform_app/screens/periodic_system_page.dart';
-import 'package:chemistry_platform_app/screens/analytical_module_page.dart';
+import 'package:chemistry_platform_app/screens/analytical_module_enhanced.dart';
 import 'package:chemistry_platform_app/screens/reference_materials_page.dart';
 
 void main() {
@@ -19,7 +19,7 @@ class _MyAppState extends State<MyApp> {
 
   static const List<Widget> _widgetOptions = <Widget>[
     PeriodicSystemPage(),
-    AnalyticalModulePage(),
+    AnalyticalModuleEnhanced(),
     ReferenceMaterialsPage(),
   ];
 
